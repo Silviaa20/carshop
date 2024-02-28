@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Concessionario {
 
 @Id
-@GeneratedValue(GenerationType=)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 private String nome;

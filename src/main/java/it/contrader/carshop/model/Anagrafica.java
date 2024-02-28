@@ -1,6 +1,6 @@
 package it.contrader.carshop.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -46,6 +47,7 @@ public class Anagrafica {
     @Column
     private String indirizzo_di_residenza;
 
-    @OneToOne(mappedBy = "idutente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
+    @JoinColumn (name="id_utente")
     private Utente utente;
 }

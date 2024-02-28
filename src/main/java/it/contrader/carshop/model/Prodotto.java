@@ -30,7 +30,7 @@ public class Prodotto {
     @ManyToOne
     @JoinColumn (name = "id_concessionario",nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private String concessionario;
+    private Concessionario concessionario;
 
 
 }

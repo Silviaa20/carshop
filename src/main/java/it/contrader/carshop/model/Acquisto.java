@@ -7,11 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
+
 
 @Entity
 @Data
@@ -21,9 +19,10 @@ import java.util.Date;
 public class Acquisto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date data_acquisto;
+    private LocalDate data_acquisto;
 
 
     @ManyToOne

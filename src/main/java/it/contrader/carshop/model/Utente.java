@@ -14,6 +14,12 @@ import lombok.NoArgsConstructor;
 
 public class Utente {
 
+    public enum Usertype {
+        ADMIN,
+        USER
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idutente;
@@ -25,5 +31,5 @@ public class Utente {
     private String password;
 
     @Column
-    private String usertype;
+    private Usertype usertype;
 }
