@@ -17,28 +17,36 @@ public class UtenteService {
     @Autowired
     public UtenteRepository repository;
 
+    @Autowired
+    AnagraficaService anagraficaService;
+
 
     public UtenteDTO findByEmailAndPassword(String email, String password) {
-        return converter.toDTO(((UtenteRepository)repository).findByEmailAndPassword(email, password)
+        return converter.toDTO(((UtenteRepository) repository).findByEmailAndPassword(email, password)
                 .orElseThrow(() -> new InvalidCredentialsException("Credenziali Errate")));
     }
 
     public Page<UtenteDTO> getAllPaginata(Pageable pageable) {
         Page<Utente> page = ((UtenteRepository) repository).findAll(pageable);
-        return ((UtenteConverter)converter).convertToDTOPage(page);
+        return ((UtenteConverter) converter).convertToDTOPage(page);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    public UtenteDTO read(Long id){
+    public UtenteDTO read(Long id) {
         return converter.toDTO(repository.findById(id).orElse(null));
     }
 
 
-    public UtenteDTO save(UtenteDTO utenteDTO, Long id) {
+    public UtenteDTO save(UtenteDTO utenteDTO) {
         return converter.toDTO(repository.save(converter.toEntity(utenteDTO)));
     }
+
+    public UtenteDTO reademail(String email) {
+        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
+    }
+
 
 }

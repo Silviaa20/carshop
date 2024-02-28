@@ -30,11 +30,6 @@ public class AnagraficaService {
         return converter.toAnagraficaDTOList(repository.findAll());
     }
 
-    public Page<AnagraficaDTO> getAllPage(int pageNumber, int pageSize){
-        List<AnagraficaDTO> dtoList = converter.toAnagraficaDTOList(repository.findAll());
-        return new PageImpl<>(dtoList, PageRequest.of(pageNumber, pageSize), dtoList.size());
-    }
-
 
     public Page<AnagraficaDTO> getAllPaginata(Pageable pageable) {
         Page<Anagrafica> page = repository.findAll(pageable);
