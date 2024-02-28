@@ -1,6 +1,6 @@
 package it.contrader.carshop.dto;
 
-
+import javax.persistence.*;
 
 import it.contrader.carshop.model.Utente.Usertype;
 import lombok.AllArgsConstructor;
