@@ -1,6 +1,7 @@
 package it.contrader.carshop.dto;
+import it.contrader.carshop.model.Utente.Usertype;
 
-import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,5 @@ public class UtenteDTO {
 
     private String password;
 
-    private String usertype;
+    private Usertype usertype;
 }
