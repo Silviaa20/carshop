@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/anag")
+@RequestMapping("/utente")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UtenteController {
 

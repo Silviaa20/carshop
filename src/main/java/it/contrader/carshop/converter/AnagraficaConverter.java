@@ -62,6 +62,7 @@ public class AnagraficaConverter {
     }
 
 
+
     public List<Anagrafica> toAnagraficaList(List<AnagraficaDTO> list) {
         return list.stream()
                 .map(this::toEntity)
