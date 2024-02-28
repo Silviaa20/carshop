@@ -1,4 +1,5 @@
 package it.contrader.carshop.dto;
+import it.contrader.carshop.model.Concessionario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,7 @@ public class ProdottoDTO {
     private String modello;
     private Double prezzo;
     private Long quantita;
-    private Concessionario concessionario;
+    private ConcessionarioDTO concessionario;
+
+
 }

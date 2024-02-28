@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class Acquisto {
 
     @ManyToOne
     @JoinColumn(name = "id_prodotto", nullable = true)
+    @JsonIgnore
     private Prodotto prodotto;
 
 

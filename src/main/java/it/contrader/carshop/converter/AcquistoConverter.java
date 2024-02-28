@@ -1,5 +1,6 @@
 package it.contrader.carshop.converter;
 
+
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.model.Acquisto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +16,17 @@ import java.util.stream.Collectors;
 public class AcquistoConverter {
 
     @Autowired
-    UtenteConverter utenteConverter;
+    private UtenteConverter utenteConverter;
 
     @Autowired
-    ProdottoConverter prodottoConverter;
+    private ProdottoConverter prodottoConverter;
 
     public Acquisto toEntity (AcquistoDTO acquistoDTO){
         return acquistoDTO != null ? Acquisto.builder()
                 .id(acquistoDTO.getId())
                 .data_acquisto(acquistoDTO.getData_acquisto())
-                .utenteConverter.toEntity(acquistoDTO.getUtente())
-                .prodottoConverter.toEntity(acquistoDTO.getProdotto())
+                .utente(utenteConverter.toEntity(acquistoDTO.getUtente()))
+                .prodotto(prodottoConverter.toEntity(acquistoDTO.getProdotto()))
                 .build() : null;
     }
 
@@ -33,8 +34,8 @@ public class AcquistoConverter {
         return acquisto != null ? AcquistoDTO.builder()
                 .id(acquisto.getId())
                 .data_acquisto(acquisto.getData_acquisto())
-                .utenteConverter.toDTO(acquisto.getUtente())
-                .prodottoConverter.toDTO(acquisto.getProdotto())
+                .utente(utenteConverter.toDTO(acquisto.getUtente()))
+                .prodotto(prodottoConverter.toDTO(acquisto.getProdotto()))
                 .build() : null;
     }
 
