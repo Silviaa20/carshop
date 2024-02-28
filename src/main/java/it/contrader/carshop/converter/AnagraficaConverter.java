@@ -1,9 +1,9 @@
-package it.contrader.carshop.Converter;
+package it.contrader.carshop.converter;
 
-import it.contrader.carshop.Converter.UtenteConverter;
+import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.model.Anagrafica;
-import it.contrader.carshop.model.Utente;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -53,6 +53,12 @@ public class AnagraficaConverter {
 
     protected Class<AnagraficaDTO> getDTOClass() {
         return AnagraficaDTO.class;
+    }
+
+    private final ModelMapper modelMapper = new ModelMapper();
+
+    public Page<AnagraficaDTO> convertToDTOPage(Page<Anagrafica> page) {
+        return page.map(entity -> modelMapper.map(entity, getDTOClass()));
     }
 
 

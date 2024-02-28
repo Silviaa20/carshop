@@ -13,7 +13,7 @@ import java.util.Map;
 @ControllerAdvice
 public class GeneralExceptionHandler {
 
-    @ExceptionHandler({InvalidCredentialsException.class, InvalidCredentialsException.class})
+    @ExceptionHandler({InvalidCredentialsException.class})
     public ResponseEntity<String> handleInvalidCredentials(InvalidCredentialsException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
