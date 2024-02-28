@@ -37,10 +37,6 @@ public class UtenteService {
     }
 
 
-    public Page<UtenteDTO> getAllPaginataAdmin(Pageable pageable, String idutente) {
-        return null;
-    }
-
     public UtenteDTO save(UtenteDTO utenteDTO, Long id) {
         return converter.toDTO(repository.save(converter.toEntity(utenteDTO)));
     }
