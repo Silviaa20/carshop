@@ -2,6 +2,7 @@ package it.contrader.carshop.converter;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,7 +16,13 @@ import java.util.stream.Collectors;
 @Component
 public class ProdottoConverter {
 @Autowired
-    private ConcessionarioConverter converter;
+private ConcessionarioConverter converter;
+    protected Class<ProdottoDTO> getDTOClass() {
+        return ProdottoDTO.class;
+    }
+@Autowired
+private final ModelMapper modelMapper = new ModelMapper();
+
 
     public ProdottoDTO toDTO (Prodotto prodotto){
        ProdottoDTO prodottoDTO = null;
@@ -75,5 +82,12 @@ public class ProdottoConverter {
         List<ProdottoDTO> subList = start >= end ? new ArrayList<>() : list.subList(start, end);
         return new PageImpl<>(subList, pageable, list.size());
     }
+
+    public Page<ProdottoDTO> convertToDTOPage(Page<Prodotto> page) {
+        return page.map(entity -> modelMapper.map(entity, getDTOClass()));
+    }
+
+
+
 }
 

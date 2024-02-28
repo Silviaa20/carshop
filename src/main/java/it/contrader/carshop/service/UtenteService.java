@@ -1,4 +1,4 @@
-package it.contrader.carshop.Service;
+package it.contrader.carshop.service;
 
 public class UtenteService {
 }
