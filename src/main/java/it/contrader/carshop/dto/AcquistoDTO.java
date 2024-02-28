@@ -1,19 +1,22 @@
 package it.contrader.carshop.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
+import java.time.LocalDate;
+
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class ProdottoDTO {
+public class AcquistoDTO {
     private Long id;
-    private String marchio;
-    private String modello;
-    private Double prezzo;
-    private Long quantita;
-    private Concessionario concessionario;
+
+    private LocalDate data_acquisto;
+
+    private UtenteDTO utente;
+
+    private ProdottoDTO prodotto;
 }
