@@ -1,6 +1,6 @@
-package it.contrader.carshop.Converter;
+package it.contrader.carshop.converter;
 
-import it.contrader.carshop.Converter.UtenteConverter;
+
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.model.Anagrafica;
 import it.contrader.carshop.model.Utente;
@@ -58,14 +58,14 @@ public class AnagraficaConverter {
 
     public List<Anagrafica> toAnagraficaList(List<AnagraficaDTO> list) {
         return list.stream()
-                .map(this::toAnagrafica)
+                .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
 
     public List<AnagraficaDTO> toAnagraficaDTOList(List<Anagrafica> list) {
         return list.stream()
-                .map(this::toAnagraficaDTO)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
 
 

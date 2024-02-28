@@ -1,4 +1,4 @@
-package it.contrader.carshop.Converter;
+package it.contrader.carshop.converter;
 
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.UtenteDTO;
@@ -44,7 +44,7 @@ public class UtenteConverter {
 
     public List<UtenteDTO> toDTOList(List<Utente> list) {
         return list.stream()
-                .map(this::toUtenteDTO)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
 
 
@@ -52,7 +52,7 @@ public class UtenteConverter {
 
     public List<Utente> toList(List<UtenteDTO> list) {
         return list.stream()
-                .map(this::toUtente)
+                .map(this::toEntity)
                 .collect(Collectors.toList());
     }
     protected Class<UtenteDTO> getDTOClass() {

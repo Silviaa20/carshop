@@ -4,6 +4,7 @@ import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.model.Concessionario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,13 +15,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class ConcessionarioConverter {
+
+    @Autowired
+    private UtenteConverter utenteConverter;
  public Concessionario toEntity (ConcessionarioDTO concessionarioDTO){
      return concessionarioDTO != null ? Concessionario.builder()
              .id(concessionarioDTO.getId())
              .nome(concessionarioDTO.getNome())
              .indirizzo(concessionarioDTO.getIndirizzo())
              .citta(concessionarioDTO.getCitta())
-             .utenteConverter.toEntity(concessionarioDTO.getUtente())
+             .utente(utenteConverter.toEntity(concessionarioDTO.getUtente()))
              .build() : null;
  }
 
@@ -30,7 +34,7 @@ public class ConcessionarioConverter {
                 .nome(concessionario.getNome())
                 .indirizzo(concessionario.getIndirizzo())
                 .citta(concessionario.getCitta())
-                .utenteConverter.toDTO(concessionario.getUtente())
+                .utente(utenteConverter.toDTO(concessionario.getUtente()))
                 .build() : null;
     }
 
