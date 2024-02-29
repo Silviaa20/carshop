@@ -1,9 +1,11 @@
 package it.contrader.carshop.controller;
 
 import it.contrader.carshop.dto.AcquistoDTO;
+import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.service.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +39,11 @@ public class AcquistoController {
 
     @DeleteMapping("/delete")
     public void delete(Long id){service.delete(id);};
+
+    @GetMapping("/getAllPage")
+    public Page<AcquistoDTO> getAllPage (@RequestParam ("pageNumber") int pageNumber, @RequestParam ("pageSize") int pageSize){
+        return service.getAllPaginata(PageRequest.of(pageNumber,pageSize));
+    }
 
 //    @GetMapping("/getAllPaginata")
 //    public Page<AcquistoDTO> getAllPaginata (@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber){

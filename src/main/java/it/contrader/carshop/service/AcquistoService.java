@@ -43,12 +43,16 @@ public class AcquistoService {
         acquistoRepository.deleteById(id);
     }
 
-
     public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {
-        Page<Acquisto> page = acquistoRepository.findAll(pageable);
-        List<AcquistoDTO> acquistoDTO = page.getContent().stream()
-                .map(acquistoConverter::toDTO)
-                .collect(Collectors.toList());
-        return new PageImpl<>(acquistoDTO, pageable, page.getTotalElements());
+        return acquistoConverter.toDTOpage(acquistoRepository.findAll(pageable));
     }
+
+
+//    public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {
+//        Page<Acquisto> page = acquistoRepository.findAll(pageable);
+//        List<AcquistoDTO> acquistoDTO = page.getContent().stream()
+//                .map(acquistoConverter::toDTO)
+//                .collect(Collectors.toList());
+//        return new PageImpl<>(acquistoDTO, pageable, page.getTotalElements());
+//    } GETALL PAGINATA non usata
 }
