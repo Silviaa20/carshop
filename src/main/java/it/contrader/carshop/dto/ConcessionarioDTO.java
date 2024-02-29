@@ -18,5 +18,5 @@ public class ConcessionarioDTO {
 
     private String citta;
 
-    private UtenteDTO utente;
+    private Long id_utente;
 }

@@ -1,4 +1,5 @@
 package it.contrader.carshop.converter;
+import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
 
@@ -26,12 +27,14 @@ public class ProdottoConverter {
                    prodotto.getModello(),
                    prodotto.getPrezzo(),
                    prodotto.getQuantita(),
-                   converter.toDTO(prodotto.getConcessionario()));
+                   prodotto.getConcessionario().getId());
        }
         return prodottoDTO;
     }
     public Prodotto toEntity(ProdottoDTO prodottoDTO) {
         Prodotto prodotto = null;
+        Concessionario concessionario = new Concessionario();
+        concessionario.setId(prodottoDTO.getId_concessionario());
         if (prodottoDTO != null) {
             prodotto = new Prodotto (
                     prodottoDTO.getId(),
@@ -39,7 +42,7 @@ public class ProdottoConverter {
                     prodottoDTO.getModello(),
                     prodottoDTO.getPrezzo(),
                     prodottoDTO.getQuantita(),
-                    converter.toEntity(prodottoDTO.getConcessionario()));
+                    concessionario);
 
 
         }
@@ -68,12 +71,5 @@ public class ProdottoConverter {
         return list;
     }
 
-    public static Page<ProdottoDTO> convertToPage(List<ProdottoDTO> list, Pageable pageable) {
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), list.size());
-
-        List<ProdottoDTO> subList = start >= end ? new ArrayList<>() : list.subList(start, end);
-        return new PageImpl<>(subList, pageable, list.size());
-    }
 }
 

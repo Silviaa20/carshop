@@ -3,6 +3,8 @@ package it.contrader.carshop.converter;
 
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.model.Acquisto;
+import it.contrader.carshop.model.Prodotto;
+import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,11 +24,17 @@ public class AcquistoConverter {
     private ProdottoConverter prodottoConverter;
 
     public Acquisto toEntity (AcquistoDTO acquistoDTO){
+        //nel DTO adesso abbiamo un Long
+        Utente utente1 = new Utente();  //creiamo un oggetto di tipo utente, ovviamente ancora vuoto
+        utente1.setIdutente(acquistoDTO.getId_utente()); //settiamo l'id a partire dal DTO
+
+        Prodotto prodotto1 = new Prodotto();
+        prodotto1.setId(acquistoDTO.getId_prodotto());
         return acquistoDTO != null ? Acquisto.builder()
                 .id(acquistoDTO.getId())
                 .data_acquisto(acquistoDTO.getData_acquisto())
-                .utente(utenteConverter.toEntity(acquistoDTO.getUtente()))
-                .prodotto(prodottoConverter.toEntity(acquistoDTO.getProdotto()))
+                .utente(utente1)
+                .prodotto(prodotto1)
                 .build() : null;
     }
 
@@ -34,8 +42,8 @@ public class AcquistoConverter {
         return acquisto != null ? AcquistoDTO.builder()
                 .id(acquisto.getId())
                 .data_acquisto(acquisto.getData_acquisto())
-                .utente(utenteConverter.toDTO(acquisto.getUtente()))
-                .prodotto(prodottoConverter.toDTO(acquisto.getProdotto()))
+                .id_utente(acquisto.getUtente().getIdutente())
+                .id_prodotto(acquisto.getProdotto().getId()) //nell'entità è rimasto l'oggetto quindi così prendo solo l'id
                 .build() : null;
     }
 
@@ -51,11 +59,4 @@ public class AcquistoConverter {
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     };
-
-    public Page<AcquistoDTO> convertToPage(List<AcquistoDTO> acquisti, Pageable pageable) {
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), acquisti.size());
-
-        return new PageImpl<>(acquisti.subList(start, end), pageable, acquisti.size());
-    }
 }

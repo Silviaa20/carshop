@@ -13,10 +13,6 @@ import java.util.List;
 @Transactional
 public interface AnagraficaRepository extends JpaRepository<Anagrafica, Long> {
 
-    public Anagrafica findByUserId(Long userId);
-
-    @Query("SELECT u FROM User u WHERE NOT EXISTS (SELECT 1 FROM Anagrafica a WHERE a.user.id = u.id)")
-    List<Utente> findUsersWithoutAnagrafica();
 
 
 }

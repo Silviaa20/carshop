@@ -16,7 +16,7 @@ public class ProdottoDTO {
     private String modello;
     private Double prezzo;
     private Long quantita;
-    private ConcessionarioDTO concessionario;
+    private Long id_concessionario;
 
 
 }
