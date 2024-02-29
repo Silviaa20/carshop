@@ -40,8 +40,5 @@ public class ProdottoService {
         return prodottoConverter.toDTOpage(prodottoRepository.findAll(pageable));
     }
 
-//    public String nomeConcessionario (Long idprod){
-//        return concessionarioService.read(read(idprod).getId_concessionario()).getNome();
-//
-//    }
+
 }
