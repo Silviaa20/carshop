@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProdottoService {
 
@@ -40,5 +42,8 @@ public class ProdottoService {
         return prodottoConverter.toDTOpage(prodottoRepository.findAll(pageable));
     }
 
+    public List <ProdottoDTO> getall () {
+        return prodottoConverter.toDTOList(prodottoRepository.findAll());
+    }
 
 }

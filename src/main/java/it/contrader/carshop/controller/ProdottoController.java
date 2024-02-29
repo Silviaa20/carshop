@@ -43,6 +43,8 @@ public class ProdottoController {
     }
 
 
+    @GetMapping("/getall")
+    public List <ProdottoDTO> getall(){return  prodottoService.getall();}
 }
 //    @GetMapping("/readnome_c")
 //    public String readnome_c (@RequestParam Long id) {
