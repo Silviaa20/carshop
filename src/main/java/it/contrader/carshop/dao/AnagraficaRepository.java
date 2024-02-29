@@ -15,4 +15,5 @@ public interface AnagraficaRepository extends JpaRepository<Anagrafica, Long> {
 
 
 
+
 }
