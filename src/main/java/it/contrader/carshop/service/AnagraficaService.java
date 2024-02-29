@@ -1,5 +1,6 @@
 package it.contrader.carshop.service;
 
+<<<<<<< HEAD
 import it.contrader.carshop.converter.AnagraficaConverter;
 import it.contrader.carshop.dao.AnagraficaRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
