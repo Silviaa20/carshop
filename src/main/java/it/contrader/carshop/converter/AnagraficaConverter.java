@@ -3,6 +3,7 @@ package it.contrader.carshop.converter;
 import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.model.Anagrafica;
+import it.contrader.carshop.model.Utente;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,9 @@ public class AnagraficaConverter {
 
 
     public Anagrafica toEntity(AnagraficaDTO anagraficaDTO) {
+        Anagrafica anagrafica = null;
+        Utente utente1 = new Utente();
+        utente1.setIdutente(anagraficaDTO.getId_utente());
         return anagraficaDTO != null ? Anagrafica.builder()
                 .id(anagraficaDTO.getId())
                 .nome(anagraficaDTO.getNome())
@@ -30,7 +34,7 @@ public class AnagraficaConverter {
                 .provincia(anagraficaDTO.getProvincia())
                 .citta_di_residenza(anagraficaDTO.getCitta_di_residenza())
                 .indirizzo_di_residenza(anagraficaDTO.getIndirizzo_di_residenza())
-                .utente(userConverter.toEntity(anagraficaDTO.getIdutente()))
+                .utente(utente1)
                 .build() : null;
     }
 
@@ -46,7 +50,7 @@ public class AnagraficaConverter {
                 .provincia(anagrafica.getProvincia())
                 .citta_di_residenza(anagrafica.getCitta_di_residenza())
                 .indirizzo_di_residenza(anagrafica.getIndirizzo_di_residenza())
-                .idutente(userConverter.toDTO(anagrafica.getUtente()))
+                .id_utente(anagrafica.getUtente().getIdutente())
                 .build() : null;
     }
 
