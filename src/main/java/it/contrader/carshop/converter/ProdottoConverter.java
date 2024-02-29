@@ -1,8 +1,11 @@
+
 package it.contrader.carshop.converter;
+import it.contrader.carshop.converter.ConcessionarioConverter;
+import it.contrader.carshop.dto.ConcessionarioDTO;
+import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,30 +18,26 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProdottoConverter {
-@Autowired
-private ConcessionarioConverter converter;
-    protected Class<ProdottoDTO> getDTOClass() {
-        return ProdottoDTO.class;
-    }
-@Autowired
-private final ModelMapper modelMapper = new ModelMapper();
-
+    @Autowired
+    private ConcessionarioConverter converter;
 
     public ProdottoDTO toDTO (Prodotto prodotto){
-       ProdottoDTO prodottoDTO = null;
-       if (prodotto != null){
-           prodottoDTO = new ProdottoDTO(
-                   prodotto.getId(),
-                   prodotto.getMarchio(),
-                   prodotto.getModello(),
-                   prodotto.getPrezzo(),
-                   prodotto.getQuantita(),
-                   converter.toDTO(prodotto.getConcessionario()));
-       }
+        ProdottoDTO prodottoDTO = null;
+        if (prodotto != null){
+            prodottoDTO = new ProdottoDTO(
+                    prodotto.getId(),
+                    prodotto.getMarchio(),
+                    prodotto.getModello(),
+                    prodotto.getPrezzo(),
+                    prodotto.getQuantita(),
+                    prodotto.getConcessionario().getId());
+        }
         return prodottoDTO;
     }
     public Prodotto toEntity(ProdottoDTO prodottoDTO) {
         Prodotto prodotto = null;
+        Concessionario concessionario = new Concessionario();
+        concessionario.setId(prodottoDTO.getId_concessionario());
         if (prodottoDTO != null) {
             prodotto = new Prodotto (
                     prodottoDTO.getId(),
@@ -46,7 +45,7 @@ private final ModelMapper modelMapper = new ModelMapper();
                     prodottoDTO.getModello(),
                     prodottoDTO.getPrezzo(),
                     prodottoDTO.getQuantita(),
-                    converter.toEntity(prodottoDTO.getConcessionario()));
+                    concessionario);
 
 
         }
@@ -74,20 +73,8 @@ private final ModelMapper modelMapper = new ModelMapper();
         }
         return list;
     }
-
-    public static Page<ProdottoDTO> convertToPage(List<ProdottoDTO> list, Pageable pageable) {
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), list.size());
-
-        List<ProdottoDTO> subList = start >= end ? new ArrayList<>() : list.subList(start, end);
-        return new PageImpl<>(subList, pageable, list.size());
+    public Page <ProdottoDTO> toDTOpage (Page <Prodotto> prodottoPage){
+        return prodottoPage.map(c -> toDTO(c));
+        //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
     }
-
-    public Page<ProdottoDTO> convertToDTOPage(Page<Prodotto> page) {
-        return page.map(entity -> modelMapper.map(entity, getDTOClass()));
-    }
-
-
-
 }
-

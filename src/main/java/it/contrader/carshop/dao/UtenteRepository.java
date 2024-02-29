@@ -26,9 +26,9 @@ import java.util.Optional;
 @Transactional
 public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
-	//Optional<Utente> findByEmailAndPassword(String email, String password);
+	Optional<Utente> findByEmailAndPassword(String email, String password);
 
-	//Utente findByEmail(String email);
+	Utente findByEmail(String email);
 
 	//Page<Utente> findAll(Pageable pageable);
 
