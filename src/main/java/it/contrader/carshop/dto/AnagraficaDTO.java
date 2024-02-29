@@ -31,5 +31,5 @@ public class AnagraficaDTO {
 
     private String indirizzo_di_residenza;
 
-    private UtenteDTO idutente;
+    private Long id_utente;
 }
