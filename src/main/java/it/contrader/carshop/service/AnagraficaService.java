@@ -23,10 +23,6 @@ public class AnagraficaService {
     public AnagraficaConverter converter;
 
 
-    public AnagraficaDTO findById(Long id) {
-        Anagrafica a = repository.findById(id).get();
-        return converter.toDTO(a);
-    }
 
     public List<AnagraficaDTO> getAll(){
         return converter.toAnagraficaDTOList(repository.findAll());
