@@ -48,6 +48,6 @@ public class AcquistoController {
 //    @GetMapping("/getAllPaginata")
 //    public Page<AcquistoDTO> getAllPaginata (@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber){
 //        return service.getAllPaginata(pageSize, pageNumber);
-//    }
+//    } prova
 
 }
