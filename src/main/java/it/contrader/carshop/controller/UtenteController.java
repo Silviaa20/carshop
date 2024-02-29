@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/utente")
@@ -48,7 +49,12 @@ public class UtenteController {
         return new ResponseEntity<>(utenteService.save(utenteDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @GetMapping("/getAll")
+    public List<UtenteDTO> getAll(){
+        return utenteService.getAll();
+    }
+
+    @PutMapping("/update")
     public ResponseEntity<UtenteDTO> update (@RequestBody UtenteDTO utenteDTO) {
         return new ResponseEntity<>(utenteService.save(utenteDTO), HttpStatus.OK);
     }
