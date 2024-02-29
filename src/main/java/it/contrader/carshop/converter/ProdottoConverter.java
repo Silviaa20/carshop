@@ -1,4 +1,5 @@
 package it.contrader.carshop.converter;
+import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -70,6 +71,9 @@ public class ProdottoConverter {
         }
         return list;
     }
-
+    public Page <ProdottoDTO> toDTOpage (Page <Prodotto> prodottoPage){
+        return prodottoPage.map(c -> toDTO(c));
+        //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
+    }
 }
 
