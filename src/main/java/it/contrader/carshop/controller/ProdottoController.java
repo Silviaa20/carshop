@@ -42,3 +42,8 @@ ProdottoService prodottoService;
 
 
 }
+//    @GetMapping("/readnome_c")
+//    public String readnome_c (@RequestParam Long id) {
+//        return  service.nomeConcessionario(id);
+//    }
+//}

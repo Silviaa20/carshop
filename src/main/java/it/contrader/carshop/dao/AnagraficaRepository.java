@@ -13,8 +13,6 @@ import java.util.List;
 @Transactional
 public interface AnagraficaRepository extends JpaRepository<Anagrafica, Long> {
 
-    //public Anagrafica findByUserId(Long userId);
-
 
 
 }

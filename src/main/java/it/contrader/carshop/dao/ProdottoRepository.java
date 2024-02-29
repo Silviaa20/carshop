@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Repository
-public interface ProdottoRepository extends JpaRepository<Prodotto,Long> {
+public interface ProdottoRepository extends JpaRepository <Prodotto, Long> {
 }

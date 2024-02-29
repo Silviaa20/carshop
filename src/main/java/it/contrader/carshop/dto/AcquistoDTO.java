@@ -16,7 +16,7 @@ public class AcquistoDTO {
 
     private LocalDate data_acquisto;
 
-    private UtenteDTO utente;
+    private Long id_utente;
 
-    private ProdottoDTO prodotto;
+    private Long id_prodotto;
 }

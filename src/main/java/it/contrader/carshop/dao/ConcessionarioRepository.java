@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Transactional
 @Repository
+@Transactional
 public interface ConcessionarioRepository extends JpaRepository <Concessionario, Long> {
 }

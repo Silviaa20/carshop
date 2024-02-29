@@ -4,6 +4,7 @@ import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.model.Concessionario;
+import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,12 +20,15 @@ public class ConcessionarioConverter {
     @Autowired
     private UtenteConverter utenteConverter;
  public Concessionario toEntity (ConcessionarioDTO concessionarioDTO){
+     Concessionario concessionario = null;
+     Utente utente1 = new Utente();
+     utente1.setIdutente(concessionarioDTO.getId_utente());
      return concessionarioDTO != null ? Concessionario.builder()
              .id(concessionarioDTO.getId())
              .nome(concessionarioDTO.getNome())
              .indirizzo(concessionarioDTO.getIndirizzo())
              .citta(concessionarioDTO.getCitta())
-             .utente(utenteConverter.toEntity(concessionarioDTO.getUtente()))
+             .utente(utente1)
              .build() : null;
  }
 
@@ -34,7 +38,7 @@ public class ConcessionarioConverter {
                 .nome(concessionario.getNome())
                 .indirizzo(concessionario.getIndirizzo())
                 .citta(concessionario.getCitta())
-                .utente(utenteConverter.toDTO(concessionario.getUtente()))
+                .id_utente(concessionario.getUtente().getIdutente())
                 .build() : null;
     }
 
@@ -56,4 +60,12 @@ public class ConcessionarioConverter {
 
         return new PageImpl<>(concessionari.subList(start, end), pageable, concessionari.size());
     }
+
+    public Page <ConcessionarioDTO> toDTOpage (Page <Concessionario> concessionarioPage){
+        return concessionarioPage.map(c -> toDTO(c));
+                                //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
+    }
+
+
+
 }
