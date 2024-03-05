@@ -26,6 +26,9 @@ public class AcquistoService {
     public AcquistoDTO insert (AcquistoDTO dto){
         return acquistoConverter.toDTO(acquistoRepository.save(acquistoConverter.toEntity(dto)));
     }
+    public List<AcquistoDTO> AcquistiByProdottoModello(String modello) {
+        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByProdotto_Modello(modello));
+    }
 
     public AcquistoDTO update (AcquistoDTO dto) {
         return acquistoConverter.toDTO(acquistoRepository.save(acquistoConverter.toEntity(dto)));

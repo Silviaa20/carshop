@@ -1,8 +1,11 @@
 package it.contrader.carshop.controller;
+import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
+import it.contrader.carshop.model.Prodotto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.contrader.carshop.service.ProdottoService;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -23,10 +26,17 @@ public class ProdottoController {
         System.out.println(dto.toString());
         return prodottoService.insert(dto);}
 
+    @GetMapping("/prodottoConc")
+    public ResponseEntity<List<ProdottoDTO>> ProdottiByConcessionario(@RequestParam Long concessionario) {
+        List<ProdottoDTO> prodotti = prodottoService.ProdottiByConcessionario(concessionario);
+        return ResponseEntity.ok(prodotti);
+    }
+
     @DeleteMapping("/delete")
     public void delete (@RequestParam  long id ) {
         prodottoService.delete(id);
     }
+
 
     @PutMapping("/update")
     public ProdottoDTO update (@RequestBody ProdottoDTO dto){
