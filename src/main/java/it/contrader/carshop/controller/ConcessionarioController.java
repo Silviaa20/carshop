@@ -24,4 +24,12 @@ public class ConcessionarioController {
     }
 
     //i parametri di tipo pageable vengono qui spacchettati e poi riuniti con "PageRequest.of"
+
+
+    @GetMapping("/sommaProdotti")
+    public Long sommaProdotti (@RequestParam Long id){
+        return service.sommaProdotti(id);
+    }
+
+
 }

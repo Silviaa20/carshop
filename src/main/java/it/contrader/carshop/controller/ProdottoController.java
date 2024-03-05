@@ -52,7 +52,24 @@ public class ProdottoController {
         return prodottoService.read(id);
     }
 
+    @GetMapping("/readModello")
+    public ResponseEntity<List<ProdottoDTO>> readModello(@RequestParam String modello){
+        List<ProdottoDTO> prodottiDTO = prodottoService.readModello(modello);
+        return ResponseEntity.ok(prodottiDTO);
+    }
 
+   @GetMapping("/readMarchio")
+    public List<ProdottoDTO> readMarchio (@RequestParam String marchio){
+        return prodottoService.readMarchio(marchio);
+    }
+
+    @GetMapping("/readModelloAndMarchio")
+    public List<ProdottoDTO> readModelloAndMarchio (@RequestParam String modello, @RequestParam String marchio){
+        return prodottoService.readModelloAndMarchio(modello, marchio);
+    }
+
+    @GetMapping("/getall")
+    public List <ProdottoDTO> getall(){return  prodottoService.getall();}
 }
 //    @GetMapping("/readnome_c")
 //    public String readnome_c (@RequestParam Long id) {
