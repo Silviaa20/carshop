@@ -3,6 +3,7 @@ import it.contrader.carshop.dto.ConcessionarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.contrader.carshop.service.ProdottoService;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -42,6 +43,21 @@ public class ProdottoController {
         return prodottoService.read(id);
     }
 
+    @GetMapping("/readModello")
+    public ResponseEntity<List<ProdottoDTO>> readModello(@RequestParam String modello){
+        List<ProdottoDTO> prodottiDTO = prodottoService.readModello(modello);
+        return ResponseEntity.ok(prodottiDTO);
+    }
+
+   @GetMapping("/readMarchio")
+    public List<ProdottoDTO> readMarchio (@RequestParam String marchio){
+        return prodottoService.readMarchio(marchio);
+    }
+
+    @GetMapping("/readModelloAndMarchio")
+    public List<ProdottoDTO> readModelloAndMarchio (@RequestParam String modello, @RequestParam String marchio){
+        return prodottoService.readModelloAndMarchio(modello, marchio);
+    }
 
     @GetMapping("/getall")
     public List <ProdottoDTO> getall(){return  prodottoService.getall();}

@@ -3,8 +3,10 @@ package it.contrader.carshop.service;
 import it.contrader.carshop.converter.ProdottoConverter;
 import it.contrader.carshop.dao.ConcessionarioRepository;
 import it.contrader.carshop.dao.ProdottoRepository;
+import it.contrader.carshop.dao.UtenteRepository;
 import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.dto.ProdottoDTO;
+import it.contrader.carshop.dto.UtenteDTO;
 import it.contrader.carshop.model.Prodotto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdottoService {
@@ -44,6 +47,20 @@ public class ProdottoService {
 
     public List <ProdottoDTO> getall () {
         return prodottoConverter.toDTOList(prodottoRepository.findAll());
+    }
+
+    public List <ProdottoDTO> readModello(String modello) {
+        List<Prodotto> prodotti = prodottoRepository.findByModello(modello);
+        return prodotti.stream()
+                .map(prodottoConverter::toDTO) // Assumi che toDTO sia un metodo che converte Prodotto in ProdottoDTO
+                .collect(Collectors.toList());
+    }
+    public List <ProdottoDTO> readMarchio(String marchio) {
+        return prodottoConverter.toDTOList(prodottoRepository.findByMarchio(marchio));
+    }
+
+    public List <ProdottoDTO> readModelloAndMarchio (String modello,String marchio){
+        return prodottoConverter.toDTOList(prodottoRepository.findByModelloAndMarchio(modello,marchio));
     }
 
 }
