@@ -32,4 +32,11 @@ public class ConcessionarioController {
     }
 
 
+    @GetMapping("/emailconc")
+    public List<ConcessionarioDTO> findByEmailUtente (@RequestParam String email){
+        return service.findByEmail(email);
+    }
+
+
+
 }

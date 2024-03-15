@@ -54,4 +54,27 @@ public class ConcessionarioService {
     //dal repository prendo la find all di tipo Pageable che sarà un'entità
     //La converto grazie al nostro converter in DTO
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public List<ConcessionarioDTO> findByEmail (String email){
+        return concessionarioConverter.toListConcessionarioDTO(concessionarioRepository.findByUtenteEmail(email));
+    }
 }

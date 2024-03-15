@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -14,6 +15,8 @@ public interface ConcessionarioRepository extends JpaRepository <Concessionario,
 
     @Query("SELECT SUM(p.quantita) FROM Prodotto p WHERE p.concessionario.id = :idConcessionario")
     Long sommaProdottiByConcessionario ( Long idConcessionario);
+
+    List<Concessionario> findByUtenteEmail(String email);
 
 
 }

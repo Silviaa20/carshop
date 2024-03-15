@@ -2,9 +2,8 @@ package it.contrader.carshop.service;
 
 import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dao.UtenteRepository;
-import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.UtenteDTO;
-import it.contrader.carshop.exceptions.InvalidCredentialsException;
+import it.contrader.carshop.exceptions.InvalidCredentials;
 import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,7 @@ public class UtenteService {
 
     public UtenteDTO findByEmailAndPassword(String email, String password) {
         return converter.toDTO(((UtenteRepository) repository).findByEmailAndPassword(email, password)
-                .orElseThrow(() -> new InvalidCredentialsException("Credenziali Errate")));
+                .orElseThrow(() -> new InvalidCredentials("Credenziali Errate")));
     }
 
     public Page<UtenteDTO> getAllPaginata(Pageable pageable) {
@@ -54,7 +53,7 @@ public class UtenteService {
     }
 
     public UtenteDTO reademail(String email) {
-        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
+        return converter.toDTO(((UtenteRepository) repository).findByEmail(email).orElseThrow(() -> new InvalidCredentials("Email sbagliata coglione")));
     }
 
 
