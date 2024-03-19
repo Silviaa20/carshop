@@ -1,11 +1,12 @@
 package it.contrader.carshop.dto;
 
 
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
+
 
 /**
  * Non esiste il model associato, serve solo a trasferire un oggetto dal frontend 

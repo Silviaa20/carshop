@@ -1,5 +1,5 @@
 package it.contrader.carshop.dao;
-
+import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Prodotto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,12 @@ import java.util.List;
 public interface ProdottoRepository extends JpaRepository <Prodotto, Long> {
 
     public List <Prodotto> findByPrezzoBetween (Double minPrezzo, Double maxPrezzo);
-//    Long findByMarchioAndModello (String marchio, String modello);
 
+    public List <Prodotto> findByModello (String modello);
 
+    public List <Prodotto> findByMarchio (String marchio);
+
+    public List <Prodotto> findByModelloAndMarchio (String modello,String marchio);
+
+    public List<Prodotto> findByConcessionarioId(Long concessionario);
 }

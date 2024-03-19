@@ -1,8 +1,6 @@
 package it.contrader.carshop.controller;
-import it.contrader.carshop.dto.ConcessionarioDTO;
+<<<<<<<<< Temporary merge branch 1
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import it.contrader.carshop.service.ProdottoService;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -18,9 +16,15 @@ public class ProdottoController {
 ProdottoService prodottoService;
 
 
-    @PostMapping("/insert")
+@PostMapping("/insert")
     public ProdottoDTO insert(@RequestBody ProdottoDTO dto){
     return prodottoService.insert(dto);}
+        
+    @GetMapping("/prodottoConc")
+    public ResponseEntity<List<ProdottoDTO>> ProdottiByConcessionario(@RequestParam Long concessionario) {
+        List<ProdottoDTO> prodotti = prodottoService.ProdottiByConcessionario(concessionario);
+        return ResponseEntity.ok(prodotti);
+    }
 
     @DeleteMapping("/delete")
     public void delete (@RequestParam  long id ) {
@@ -57,8 +61,26 @@ ProdottoService prodottoService;
 //    }
 
 }
+    @GetMapping("/readModello")
+    public ResponseEntity<List<ProdottoDTO>> readModello(@RequestParam String modello){
+        List<ProdottoDTO> prodottiDTO = prodottoService.readModello(modello);
+        return ResponseEntity.ok(prodottiDTO);
+    }
+
+   @GetMapping("/readMarchio")
+    public List<ProdottoDTO> readMarchio (@RequestParam String marchio){
+        return prodottoService.readMarchio(marchio);
+    }
+
+    @GetMapping("/readModelloAndMarchio")
+    public List<ProdottoDTO> readModelloAndMarchio (@RequestParam String modello, @RequestParam String marchio){
+        return prodottoService.readModelloAndMarchio(modello, marchio);
+    }
+
+}
 //    @GetMapping("/readnome_c")
 //    public String readnome_c (@RequestParam Long id) {
 //        return  service.nomeConcessionario(id);
 //    }
-//}
+>>>>>>>>> Temporary merge branch 2
+

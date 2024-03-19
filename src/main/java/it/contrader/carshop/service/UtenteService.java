@@ -1,9 +1,13 @@
 package it.contrader.carshop.service;
 
+<<<<<<<<< Temporary merge branch 1
+public class UtenteService {
+=========
 import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dao.UtenteRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.UtenteDTO;
+import it.contrader.carshop.exceptions.InvalidCredentials;
 
 import it.contrader.carshop.exception.UserNotFoundException;
 import it.contrader.carshop.model.Utente;
@@ -54,9 +58,10 @@ public class UtenteService {
         return converter.toDTO(repository.save(converter.toEntity(utenteDTO)));
     }
 
-//    public UtenteDTO reademail(String email) {
-//        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
-//    }
+    public UtenteDTO reademail(String email) {
+        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
+    }
 
 
+>>>>>>>>> Temporary merge branch 2
 }

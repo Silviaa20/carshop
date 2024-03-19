@@ -5,6 +5,7 @@ import it.contrader.carshop.dao.AcquistoRepository;
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.dto.UtenteDTO;
+import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Utente;
@@ -28,6 +29,9 @@ public class AcquistoService {
     public AcquistoDTO insert (AcquistoDTO dto){
         return acquistoConverter.toDTO(acquistoRepository.save(acquistoConverter.toEntity(dto)));
     }
+    public List<AcquistoDTO> AcquistiByProdottoModello(String modello) {
+        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByProdotto_Modello(modello));
+    }
 
     public AcquistoDTO update (AcquistoDTO dto) {
         return acquistoConverter.toDTO(acquistoRepository.save(acquistoConverter.toEntity(dto)));
@@ -43,6 +47,11 @@ public class AcquistoService {
 
     public void delete(long id) {
         acquistoRepository.deleteById(id);
+    }
+
+
+    public List<AcquistoDTO> AcquistiByConcessionario(Long concessionario) {
+        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByProdottoConcessionarioId(concessionario));
     }
 
     public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {

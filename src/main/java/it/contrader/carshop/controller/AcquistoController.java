@@ -1,13 +1,10 @@
 package it.contrader.carshop.controller;
 
 import it.contrader.carshop.dto.AcquistoDTO;
-import it.contrader.carshop.dto.ConcessionarioDTO;
-import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.service.AcquistoService;
 import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +31,17 @@ public class AcquistoController {
         return service.read(id);
     }
 
+    @GetMapping("/acquistiModelli")
+    public List<AcquistoDTO> AcquistiByProdottoModello(@RequestParam String modello) {
+        return service.AcquistiByProdottoModello(modello);
+    }
+
+    @GetMapping("/acquistoConc")
+    public ResponseEntity<List<AcquistoDTO>> AcquistiByConcessionario(@RequestParam Long concessionario) {
+        List<AcquistoDTO> acquisti = service.AcquistiByConcessionario(concessionario);
+        return ResponseEntity.ok(acquisti);
+    }
+
     @GetMapping("/getAll")
     public List<AcquistoDTO> getAll(){
         return service.getAll();
@@ -56,6 +64,6 @@ public class AcquistoController {
 //    @GetMapping("/getAllPaginata")
 //    public Page<AcquistoDTO> getAllPaginata (@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber){
 //        return service.getAllPaginata(pageSize, pageNumber);
-//    } prova
+//    }
 
 }

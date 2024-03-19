@@ -49,7 +49,13 @@ public class ConcessionarioService {
        return concessionarioConverter.toDTOpage(concessionarioRepository.findAll(pageable));
     }
 
+    public Long sommaProdotti (Long id){return concessionarioRepository.sommaProdottiByConcessionario(id);}
+
     //dal repository prendo la find all di tipo Pageable che sarà un'entità
     //La converto grazie al nostro converter in DTO
 
+
+    public List<ConcessionarioDTO> findByEmail (String email){
+        return concessionarioConverter.toListConcessionarioDTO(concessionarioRepository.findByUtenteEmail(email));
+    }
 }
