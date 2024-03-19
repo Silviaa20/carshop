@@ -15,5 +15,5 @@ public interface AcquistoRepository extends JpaRepository <Acquisto, Long>{
 
     List<Acquisto> findByProdotto_Modello(String modello);
 
-    List<Acquisto> findByConcessionarioId(Long concessionario);
+    List<Acquisto> findByProdottoConcessionarioId(Long concessionario);
 }

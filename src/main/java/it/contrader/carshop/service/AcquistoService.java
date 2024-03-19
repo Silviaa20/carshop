@@ -49,7 +49,7 @@ public class AcquistoService {
 
 
     public List<AcquistoDTO> AcquistiByConcessionario(Long concessionario) {
-        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByConcessionarioId(concessionario));
+        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByProdottoConcessionarioId(concessionario));
     }
 
     public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {
