@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProdottoService {
 
@@ -39,6 +41,22 @@ public class ProdottoService {
     public Page<ProdottoDTO> getAllPaginata(Pageable pageable) {
         return prodottoConverter.toDTOpage(prodottoRepository.findAll(pageable));
     }
+
+    public List<ProdottoDTO> getAll (){
+        return prodottoConverter.toDTOList(prodottoRepository.findAll());
+    }
+
+    public List <ProdottoDTO> findByPrezzoBetween (Double minPrezzo, Double maxPrezzo){
+        return prodottoConverter.toDTOList(prodottoRepository.findByPrezzoBetween(minPrezzo, maxPrezzo));
+    }
+
+
+//    public Long countByMarchioAndModello (String marchio, String modello, Long id){
+//        ProdottoDTO prodById= prodottoConverter.toDTO(prodottoRepository.getById(id));
+//        String marchio1 = prodById.getMarchio();
+//        String modello1 = prodById.getModello();
+//        return prodottoRepository.countByMarchioAndModello(marchio1,modello1);
+//    }
 
 //    public String nomeConcessionario (Long idprod){
 //        return concessionarioService.read(read(idprod).getId_concessionario()).getNome();

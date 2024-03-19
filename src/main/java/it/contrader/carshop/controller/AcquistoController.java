@@ -2,7 +2,9 @@ package it.contrader.carshop.controller;
 
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
+import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.service.AcquistoService;
+import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,6 +46,12 @@ public class AcquistoController {
     public Page<AcquistoDTO> getAllPage (@RequestParam ("pageNumber") int pageNumber, @RequestParam ("pageSize") int pageSize){
         return service.getAllPaginata(PageRequest.of(pageNumber,pageSize));
     }
+
+    @GetMapping("/storicoUtente")
+    public Page<AcquistoDTO> storicoUtente ( @RequestParam ("pageNumber") int pageNumber, @RequestParam ("pageSize") int pageSize, @RequestParam Long idUtente){
+        return service.findAllByUtenteIdUtente  (PageRequest.of(pageNumber,pageSize), idUtente);
+    }
+
 
 //    @GetMapping("/getAllPaginata")
 //    public Page<AcquistoDTO> getAllPaginata (@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber){

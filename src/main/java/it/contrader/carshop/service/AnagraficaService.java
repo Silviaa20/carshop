@@ -1,6 +1,6 @@
 package it.contrader.carshop.service;
 
-<<<<<<< HEAD
+
 import it.contrader.carshop.converter.AnagraficaConverter;
 import it.contrader.carshop.dao.AnagraficaRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
@@ -24,10 +24,7 @@ public class AnagraficaService {
     public AnagraficaConverter converter;
 
 
-    public AnagraficaDTO findById(Long id) {
-        Anagrafica a = repository.findById(id).get();
-        return converter.toDTO(a);
-    }
+
 
     public List<AnagraficaDTO> getAll(){
         return converter.toAnagraficaDTOList(repository.findAll());

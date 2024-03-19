@@ -49,10 +49,6 @@ public class AnagraficaController {
     public ResponseEntity<Page<AnagraficaDTO>> getallPageable(@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber) {
         return new ResponseEntity<>(service.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
     }
-
-    @GetMapping("/findById")
-    public ResponseEntity<?> findById(@RequestParam("id") Long id){
-        return ResponseEntity.ok().body(service.findById(id));
-    }
+    
 
 }

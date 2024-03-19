@@ -26,6 +26,7 @@ private String indirizzo;
 private String citta;
 
 
+
     @ManyToOne
     @JoinColumn(name = "id_admin", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)

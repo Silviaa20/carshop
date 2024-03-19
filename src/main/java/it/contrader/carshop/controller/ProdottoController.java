@@ -20,7 +20,6 @@ ProdottoService prodottoService;
 
     @PostMapping("/insert")
     public ProdottoDTO insert(@RequestBody ProdottoDTO dto){
-    System.out.println(dto.toString());
     return prodottoService.insert(dto);}
 
     @DeleteMapping("/delete")
@@ -42,6 +41,20 @@ ProdottoService prodottoService;
     return prodottoService.read(id);
 }
 
+    @GetMapping("/getAll")
+    public List <ProdottoDTO> getAll (){
+        return  prodottoService.getAll();
+    }
+
+    @GetMapping("/findByPrezzoBetween")
+    public List <ProdottoDTO> findByPrezzoBetween (@RequestParam Double minPrezzo, @RequestParam Double maxPrezzo){
+        return prodottoService.findByPrezzoBetween(minPrezzo, maxPrezzo);
+    }
+
+//    @GetMapping("/countByMarchioAndModello")
+//    public Long countByMarchioAndModello (@RequestParam String marchio, @RequestParam String modello, @RequestParam Long id){
+//        return prodottoService.countByMarchioAndModello(marchio, modello, id);
+//    }
 
 }
 //    @GetMapping("/readnome_c")

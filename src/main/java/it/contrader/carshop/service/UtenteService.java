@@ -4,7 +4,8 @@ import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dao.UtenteRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.UtenteDTO;
-import it.contrader.carshop.exceptions.InvalidCredentialsException;
+
+import it.contrader.carshop.exception.UserNotFoundException;
 import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,7 @@ public class UtenteService {
 
     public UtenteDTO findByEmailAndPassword(String email, String password) {
         return converter.toDTO(((UtenteRepository) repository).findByEmailAndPassword(email, password)
-                .orElseThrow(() -> new InvalidCredentialsException("Credenziali Errate")));
+                .orElseThrow(() -> new RuntimeException("credenziali non valide")));
     }
 
     public Page<UtenteDTO> getAllPaginata(Pageable pageable) {
@@ -45,7 +46,7 @@ public class UtenteService {
     }
 
     public UtenteDTO read(Long id) {
-        return converter.toDTO(repository.findById(id).orElse(null));
+        return converter.toDTO(repository.findById(id).orElseThrow(() -> new UserNotFoundException("utente non trovato")));
     }
 
 
@@ -53,9 +54,9 @@ public class UtenteService {
         return converter.toDTO(repository.save(converter.toEntity(utenteDTO)));
     }
 
-    public UtenteDTO reademail(String email) {
-        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
-    }
+//    public UtenteDTO reademail(String email) {
+//        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
+//    }
 
 
 }

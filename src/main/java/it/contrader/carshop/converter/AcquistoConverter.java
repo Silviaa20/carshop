@@ -65,4 +65,5 @@ public class AcquistoConverter {
         return acquistoPage.map(c -> toDTO(c));
         //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
     }
+
 }
