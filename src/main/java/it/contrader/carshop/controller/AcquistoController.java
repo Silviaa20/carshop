@@ -1,6 +1,7 @@
 package it.contrader.carshop.controller;
 
 import it.contrader.carshop.dto.AcquistoDTO;
+import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.service.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class AcquistoController {
     @GetMapping("/acquistiModelli")
     public List<AcquistoDTO> AcquistiByProdottoModello(@RequestParam String modello) {
         return service.AcquistiByProdottoModello(modello);
+    }
+
+    @GetMapping("/acquistoConc")
+    public ResponseEntity<List<AcquistoDTO>> AcquistiByConcessionario(@RequestParam Long concessionario) {
+        List<AcquistoDTO> acquisti = service.AcquistiByConcessionario(concessionario);
+        return ResponseEntity.ok(acquisti);
     }
 
     @GetMapping("/getAll")

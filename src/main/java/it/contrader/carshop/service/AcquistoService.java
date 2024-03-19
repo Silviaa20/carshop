@@ -4,6 +4,7 @@ import it.contrader.carshop.converter.AcquistoConverter;
 import it.contrader.carshop.dao.AcquistoRepository;
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
+import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.model.Concessionario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class AcquistoService {
         acquistoRepository.deleteById(id);
     }
 
+
+    public List<AcquistoDTO> AcquistiByConcessionario(Long concessionario) {
+        return acquistoConverter.toListAcquistoDTO(acquistoRepository.findByConcessionarioId(concessionario));
+    }
 
     public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {
         Page<Acquisto> page = acquistoRepository.findAll(pageable);
