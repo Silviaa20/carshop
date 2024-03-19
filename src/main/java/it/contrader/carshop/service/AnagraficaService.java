@@ -41,9 +41,9 @@ public class AnagraficaService {
 //        return converter.toDTO(repository.findById(id).orElse(null));
 //    }
 
-//    public AnagraficaDTO save(AnagraficaDTO anagraficaDTO) {
-//        return converter.toDTO(repository.save(converter.toEntity(anagraficaDTO)));
-//    }
+    public AnagraficaDTO save(AnagraficaDTO anagraficaDTO) {
+        return converter.toDTO(repository.save(converter.toEntity(anagraficaDTO)));
+    }
 
 
     public AnagraficaDTO read (Long id){
@@ -68,20 +68,7 @@ public class AnagraficaService {
         return converter.toAnagraficaDTOList(repository.findAllByNome(nome));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>>>> Temporary merge branch 2
+    public AnagraficaDTO findById (Long id){
+        return converter.toDTO(repository.findById(id).orElseThrow());
+    }
 }

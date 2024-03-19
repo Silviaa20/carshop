@@ -58,4 +58,6 @@ public class ConcessionarioService {
     public List<ConcessionarioDTO> findByEmail (String email){
         return concessionarioConverter.toListConcessionarioDTO(concessionarioRepository.findByUtenteEmail(email));
     }
+
+
 }

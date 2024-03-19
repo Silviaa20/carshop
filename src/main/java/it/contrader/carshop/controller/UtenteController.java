@@ -4,7 +4,6 @@ package it.contrader.carshop.controller;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.LoginDTO;
 import it.contrader.carshop.dto.UtenteDTO;
-import it.contrader.carshop.exception.UserNotFoundException;
 import it.contrader.carshop.service.UtenteService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

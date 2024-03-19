@@ -15,6 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProdottoService {
 
@@ -66,5 +69,10 @@ public class ProdottoService {
     public List <ProdottoDTO> readModelloAndMarchio (String modello,String marchio){
         return prodottoConverter.toDTOList(prodottoRepository.findByModelloAndMarchio(modello,marchio));
     }
+
+    public List <ProdottoDTO> findByPrezzoBetween (Double minPrezzo, Double maxPrezzo){
+        return prodottoConverter.toDTOList(prodottoRepository.findByPrezzoBetween(minPrezzo,maxPrezzo));
+    }
+
 
 }

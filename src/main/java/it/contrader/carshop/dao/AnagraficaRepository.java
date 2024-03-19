@@ -18,5 +18,7 @@ public interface AnagraficaRepository extends JpaRepository<Anagrafica, Long> {
 
   List<Anagrafica> findAllByNome(String nome);
 
+ Optional <Anagrafica> findById(Long id);
+
 
 }

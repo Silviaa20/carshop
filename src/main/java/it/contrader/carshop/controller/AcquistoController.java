@@ -6,6 +6,7 @@ import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.service.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
