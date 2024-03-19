@@ -55,25 +55,6 @@ public class ConcessionarioService {
     //La converto grazie al nostro converter in DTO
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public List<ConcessionarioDTO> findByEmail (String email){
         return concessionarioConverter.toListConcessionarioDTO(concessionarioRepository.findByUtenteEmail(email));
     }
