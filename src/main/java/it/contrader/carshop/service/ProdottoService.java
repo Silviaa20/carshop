@@ -9,13 +9,11 @@ import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.dto.UtenteDTO;
 import it.contrader.carshop.model.Prodotto;
+import it.contrader.carshop.dto.ProdottoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdottoService {

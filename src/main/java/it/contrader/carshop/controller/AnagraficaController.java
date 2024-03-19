@@ -20,72 +20,39 @@ public class AnagraficaController {
     private AnagraficaService service;
 
 
-//    @PostMapping("/insert")
-//    public ResponseEntity<AnagraficaDTO> insert (@RequestBody AnagraficaDTO anagraficaDTO) {
-//        return new ResponseEntity<>(service.save(anagraficaDTO), HttpStatus.OK);
-//    }
-//    @PutMapping("/update")
-//    public ResponseEntity<AnagraficaDTO> update (@RequestBody AnagraficaDTO anagraficaDTO) {
-//        return new ResponseEntity<>(service.save(anagraficaDTO), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/read")
-//    public  AnagraficaDTO read (@RequestParam Long id) {
-//        return service.read(id);
-//    }
-//
-//    @DeleteMapping("/delete")
-//    public void  delete (@RequestParam Long id){
-//        service.delete(id);
-//    }
-//
-//    @GetMapping("/getAll")
-//    public List<AnagraficaDTO> getAll(){
-//        return service.getAll();
-//    }
-//
-//
-//    @GetMapping("/getAllPaginata")
-//    public ResponseEntity<Page<AnagraficaDTO>> getallPageable(@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber) {
-//        return new ResponseEntity<>(service.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @PostMapping("/insert")
+    public ResponseEntity<AnagraficaDTO> insert (@RequestBody AnagraficaDTO anagraficaDTO) {
+        return new ResponseEntity<>(service.save(anagraficaDTO), HttpStatus.OK);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<AnagraficaDTO> update (@RequestBody AnagraficaDTO anagraficaDTO) {
+        return new ResponseEntity<>(service.save(anagraficaDTO), HttpStatus.OK);
+    }
 
     @GetMapping("/read")
-    public  AnagraficaDTO read (@RequestParam Long id) {return service.read(id);}
+    public  AnagraficaDTO read (@RequestParam Long id) {
+        return service.read(id);
+    }
 
     @DeleteMapping("/delete")
-    public void  delete (@RequestParam Long id) {service.delete(id);}
-
-    @PostMapping("/insert")
-    public AnagraficaDTO insert (@RequestBody AnagraficaDTO anagraficaDTO) {
-        return service.insert(anagraficaDTO);
+    public void  delete (@RequestParam Long id){
+        service.delete(id);
     }
 
-    @GetMapping("/readnome")
-    public AnagraficaDTO readnome (@RequestParam String nome){
-        return service.readNome(nome);
-    }
-
-    @GetMapping("/tuttonome")
-    public List<AnagraficaDTO> findAllByNome(@RequestParam String nome){
-        return service.findAllByNome(nome);
+    @GetMapping("/getAll")
+    public List<AnagraficaDTO> getAll(){
+        return service.getAll();
     }
 
 
+    @GetMapping("/getAllPaginata")
+    public ResponseEntity<Page<AnagraficaDTO>> getallPageable(@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber) {
+        return new ResponseEntity<>(service.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
+    }
+
+    @GetMapping("/findById")
+    public ResponseEntity<?> findById(@RequestParam("id") Long id){
+        return ResponseEntity.ok().body(service.findById(id));
+    }
 
 }

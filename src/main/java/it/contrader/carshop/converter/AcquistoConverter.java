@@ -3,6 +3,7 @@ package it.contrader.carshop.converter;
 
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.model.Acquisto;
+import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,10 @@ public class AcquistoConverter {
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     };
+
+    public Page <AcquistoDTO> toDTOpage (Page <Acquisto> acquistoPage){
+        return acquistoPage.map(c -> toDTO(c));
+        //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
+    }
+
 }

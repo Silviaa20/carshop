@@ -50,7 +50,7 @@ public class AnagraficaService {
        return converter.toDTO(repository.findById(id).orElseThrow());
     }
 
-    public void delete (Long id){
+    public void delete(Long id){
         repository.deleteById(id);
     }
 
@@ -83,20 +83,5 @@ public class AnagraficaService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>>>>>>>>> Temporary merge branch 2
 }

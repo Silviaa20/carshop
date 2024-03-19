@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import it.contrader.carshop.service.ProdottoService;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -37,8 +39,7 @@ public class ProdottoController {
         prodottoService.delete(id);
     }
 
-
-    @PutMapping("/update")
+@PutMapping("/update")
     public ProdottoDTO update (@RequestBody ProdottoDTO dto){
         return prodottoService.update(dto);
     }
@@ -70,6 +71,17 @@ public class ProdottoController {
 
     @GetMapping("/getall")
     public List <ProdottoDTO> getall(){return  prodottoService.getall();}
+
+    @GetMapping("/findByPrezzoBetween")
+    public List <ProdottoDTO> findByPrezzoBetween (@RequestParam Double minPrezzo, @RequestParam Double maxPrezzo){
+        return prodottoService.findByPrezzoBetween(minPrezzo, maxPrezzo);
+    }
+
+//    @GetMapping("/countByMarchioAndModello")
+//    public Long countByMarchioAndModello (@RequestParam String marchio, @RequestParam String modello, @RequestParam Long id){
+//        return prodottoService.countByMarchioAndModello(marchio, modello, id);
+//    }
+
 }
 //    @GetMapping("/readnome_c")
 //    public String readnome_c (@RequestParam Long id) {

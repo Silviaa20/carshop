@@ -4,9 +4,11 @@ import it.contrader.carshop.converter.AcquistoConverter;
 import it.contrader.carshop.dao.AcquistoRepository;
 import it.contrader.carshop.dto.AcquistoDTO;
 import it.contrader.carshop.dto.ConcessionarioDTO;
+import it.contrader.carshop.dto.UtenteDTO;
 import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Acquisto;
 import it.contrader.carshop.model.Concessionario;
+import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -59,4 +61,17 @@ public class AcquistoService {
                 .collect(Collectors.toList());
         return new PageImpl<>(acquistoDTO, pageable, page.getTotalElements());
     }
+    public Page <AcquistoDTO> findAllByUtenteIdUtente (Pageable pageable, Long idUtente){
+        Page <Acquisto> pagina = acquistoRepository.findAllByUtenteIdutente(pageable, idUtente);
+                return acquistoConverter.toDTOpage(pagina);
+    }
+
+
+//    public Page<AcquistoDTO> getAllPaginata(Pageable pageable) {
+//        Page<Acquisto> page = acquistoRepository.findAll(pageable);
+//        List<AcquistoDTO> acquistoDTO = page.getContent().stream()
+//                .map(acquistoConverter::toDTO)
+//                .collect(Collectors.toList());
+//        return new PageImpl<>(acquistoDTO, pageable, page.getTotalElements());
+//    } GETALL PAGINATA non usata
 }

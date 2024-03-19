@@ -4,6 +4,7 @@ package it.contrader.carshop.controller;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.LoginDTO;
 import it.contrader.carshop.dto.UtenteDTO;
+import it.contrader.carshop.exception.UserNotFoundException;
 import it.contrader.carshop.service.UtenteService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,10 @@ public class UtenteController {
         return new ResponseEntity<>(utenteService.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
     }
 
-    @GetMapping("/reademail")
-    public UtenteDTO reademail(String email) {
-        return utenteService.reademail(email);
-    }
+//    @GetMapping("/reademail")
+//    public UtenteDTO reademail(String email) {
+//        return utenteService.reademail(email);
+//    }
 
     @DeleteMapping("/delete")
     public void  delete (@RequestParam Long id){
@@ -63,6 +64,4 @@ public class UtenteController {
     public  UtenteDTO read (@RequestParam Long id) {
         return utenteService.read(id);
     }
-
-
 }

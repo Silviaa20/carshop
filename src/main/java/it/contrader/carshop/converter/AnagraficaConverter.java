@@ -3,6 +3,7 @@ package it.contrader.carshop.converter;
 import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.model.Anagrafica;
+import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Utente;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

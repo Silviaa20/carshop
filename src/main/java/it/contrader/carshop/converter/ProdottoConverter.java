@@ -1,11 +1,9 @@
-
 package it.contrader.carshop.converter;
-import it.contrader.carshop.converter.ConcessionarioConverter;
-import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProdottoConverter {
-    @Autowired
+@Autowired
     private ConcessionarioConverter converter;
 
     public ProdottoDTO toDTO (Prodotto prodotto){
@@ -78,3 +76,4 @@ public class ProdottoConverter {
         //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
     }
 }
+

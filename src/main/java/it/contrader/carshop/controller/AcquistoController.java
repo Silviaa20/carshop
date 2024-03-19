@@ -52,6 +52,17 @@ public class AcquistoController {
     @DeleteMapping("/delete")
     public void delete(Long id){service.delete(id);};
 
+    @GetMapping("/getAllPage")
+    public Page<AcquistoDTO> getAllPage (@RequestParam ("pageNumber") int pageNumber, @RequestParam ("pageSize") int pageSize){
+        return service.getAllPaginata(PageRequest.of(pageNumber,pageSize));
+    }
+
+    @GetMapping("/storicoUtente")
+    public Page<AcquistoDTO> storicoUtente ( @RequestParam ("pageNumber") int pageNumber, @RequestParam ("pageSize") int pageSize, @RequestParam Long idUtente){
+        return service.findAllByUtenteIdUtente  (PageRequest.of(pageNumber,pageSize), idUtente);
+    }
+
+
 //    @GetMapping("/getAllPaginata")
 //    public Page<AcquistoDTO> getAllPaginata (@RequestParam("pageSize") int pageSize, @RequestParam("pageNumber") int pageNumber){
 //        return service.getAllPaginata(pageSize, pageNumber);
