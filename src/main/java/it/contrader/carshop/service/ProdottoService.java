@@ -6,6 +6,7 @@ import it.contrader.carshop.dao.ProdottoRepository;
 import it.contrader.carshop.dto.ConcessionarioDTO;
 import it.contrader.carshop.dto.ProdottoDTO;
 import it.contrader.carshop.model.Prodotto;
+import it.contrader.carshop.dto.ProdottoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,49 +18,31 @@ import java.util.List;
 public class ProdottoService {
 
     @Autowired
-   ConcessionarioService concessionarioService;
-
-    @Autowired
     ProdottoRepository prodottoRepository;
 
     @Autowired
     ProdottoConverter prodottoConverter;
 
-    public ProdottoDTO read (Long id){
-        return prodottoConverter.toDTO(prodottoRepository.findById(id).orElseThrow(()-> new RuntimeException("prodotto non trovato")));
+
+    public ProdottoDTO insert (ProdottoDTO prodottoDTO){
+        return prodottoConverter.toDTO(prodottoRepository.save(prodottoConverter.toEntity(prodottoDTO)));
     }
 
-    public ProdottoDTO insert (ProdottoDTO prodottoDTO)
-    {return prodottoConverter.toDTO(prodottoRepository.save(prodottoConverter.toEntity(prodottoDTO)));}
+    public ProdottoDTO update (ProdottoDTO prodottoDTO){
+        return prodottoConverter.toDTO(prodottoRepository.save(prodottoConverter.toEntity(prodottoDTO)));
+    }
 
-    public void delete (long id) { prodottoRepository.deleteById(id);}
+    public void delete (long id) {prodottoRepository.deleteById(id);}
 
 
-    public ProdottoDTO update (ProdottoDTO prodottoDTO)
-    {return prodottoConverter.toDTO(prodottoRepository.save(prodottoConverter.toEntity(prodottoDTO)));}
+    public List <ProdottoDTO> getAll() {return prodottoConverter.toDTOList(prodottoRepository.findAll());}
+
+
+    public ProdottoDTO read (long id) {return prodottoConverter.toDTO(prodottoRepository.findById(id).get());}
 
     public Page<ProdottoDTO> getAllPaginata(Pageable pageable) {
-        return prodottoConverter.toDTOpage(prodottoRepository.findAll(pageable));
+        Page<Prodotto> page = prodottoRepository.findAll(pageable);
+        return prodottoConverter.toDTOpage(page);
     }
 
-    public List<ProdottoDTO> getAll (){
-        return prodottoConverter.toDTOList(prodottoRepository.findAll());
-    }
-
-    public List <ProdottoDTO> findByPrezzoBetween (Double minPrezzo, Double maxPrezzo){
-        return prodottoConverter.toDTOList(prodottoRepository.findByPrezzoBetween(minPrezzo, maxPrezzo));
-    }
-
-
-//    public Long countByMarchioAndModello (String marchio, String modello, Long id){
-//        ProdottoDTO prodById= prodottoConverter.toDTO(prodottoRepository.getById(id));
-//        String marchio1 = prodById.getMarchio();
-//        String modello1 = prodById.getModello();
-//        return prodottoRepository.countByMarchioAndModello(marchio1,modello1);
-//    }
-
-//    public String nomeConcessionario (Long idprod){
-//        return concessionarioService.read(read(idprod).getId_concessionario()).getNome();
-//
-//    }
 }
