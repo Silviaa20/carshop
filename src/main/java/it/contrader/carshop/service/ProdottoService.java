@@ -1,13 +1,8 @@
 package it.contrader.carshop.service;
-
 import it.contrader.carshop.converter.ProdottoConverter;
-
 import it.contrader.carshop.dao.ProdottoRepository;
-
-import it.contrader.carshop.dto.ProdottoDTO;
-import it.contrader.carshop.exception.UserNotFoundException;
 import it.contrader.carshop.model.Prodotto;
-
+import it.contrader.carshop.dto.ProdottoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,11 +34,11 @@ public class ProdottoService {
     public List <ProdottoDTO> getAll() {return prodottoConverter.toDTOList(prodottoRepository.findAll());}
 
 
-    public ProdottoDTO read (long id) {return prodottoConverter.toDTO(prodottoRepository.findById(id).orElseThrow(() -> new UserNotFoundException("prodotto non trovato")));}
+    public ProdottoDTO read (long id) {return prodottoConverter.toDTO(prodottoRepository.findById(id).get());}
 
     public Page<ProdottoDTO> getAllPaginata(Pageable pageable) {
         Page<Prodotto> page = prodottoRepository.findAll(pageable);
-        return prodottoConverter.toDTOpage(page);
+        return prodottoConverter.convertToDTOPage(page);
     }
 
 }
