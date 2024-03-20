@@ -1,15 +1,12 @@
 package it.contrader.carshop.service;
 
-<<<<<<<<< Temporary merge branch 1
-public class UtenteService {
-=========
+
+
 import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dao.UtenteRepository;
-import it.contrader.carshop.dto.AnagraficaDTO;
 import it.contrader.carshop.dto.UtenteDTO;
-import it.contrader.carshop.exceptions.InvalidCredentials;
 
-import it.contrader.carshop.exception.UserNotFoundException;
+import it.contrader.carshop.exception.SomethingNotFoundException;
 import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,7 +47,7 @@ public class UtenteService {
     }
 
     public UtenteDTO read(Long id) {
-        return converter.toDTO(repository.findById(id).orElseThrow(() -> new UserNotFoundException("utente non trovato")));
+        return converter.toDTO(repository.findById(id).orElseThrow(() -> new SomethingNotFoundException("utente non trovato")));
     }
 
 
@@ -58,10 +55,4 @@ public class UtenteService {
         return converter.toDTO(repository.save(converter.toEntity(utenteDTO)));
     }
 
-    public UtenteDTO reademail(String email) {
-        return converter.toDTO(((UtenteRepository) repository).findByEmail(email));
-    }
-
-
->>>>>>>>> Temporary merge branch 2
 }

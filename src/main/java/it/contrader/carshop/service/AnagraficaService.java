@@ -1,17 +1,12 @@
 package it.contrader.carshop.service;
 
-<<<<<<<<< Temporary merge branch 1
-public class AnagraficaService {
-=========
 import it.contrader.carshop.converter.AnagraficaConverter;
 import it.contrader.carshop.dao.AnagraficaRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
-import it.contrader.carshop.exceptions.InvalidCredentials;
+import it.contrader.carshop.exception.InvalidCredentials;
 import it.contrader.carshop.model.Anagrafica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +22,13 @@ public class AnagraficaService {
     public AnagraficaConverter converter;
 
 
-    public AnagraficaDTO findById(Long id) {
-        Anagrafica a = repository.findById(id).get();
-        return converter.toDTO(a);
+//    public AnagraficaDTO findById(Long id) {
+//        Anagrafica a = repository.findById(id).get();
+//        return converter.toDTO(a);
+//    }
+
+    public AnagraficaDTO read (Long id){
+        return converter.toDTO(repository.findById(id).orElseThrow());
     }
 
     public List<AnagraficaDTO> getAll(){
@@ -59,21 +58,4 @@ public class AnagraficaService {
     public List<AnagraficaDTO> findAllByNome (String nome){
         return converter.toAnagraficaDTOList(repository.findAllByNome(nome));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>>>> Temporary merge branch 2
 }

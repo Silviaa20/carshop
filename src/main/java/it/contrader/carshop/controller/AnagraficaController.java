@@ -50,9 +50,9 @@ public class AnagraficaController {
         return new ResponseEntity<>(service.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
     }
 
-    @GetMapping("/findById")
-    public ResponseEntity<?> findById(@RequestParam("id") Long id){
-        return ResponseEntity.ok().body(service.findById(id));
-    }
+//    @GetMapping("/findById")
+//    public ResponseEntity<?> findById(@RequestParam("id") Long id){
+//        return ResponseEntity.ok().body(service.findById(id));
+//    }
 
 }

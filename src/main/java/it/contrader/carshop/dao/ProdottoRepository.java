@@ -20,4 +20,5 @@ public interface ProdottoRepository extends JpaRepository <Prodotto, Long> {
     public List <Prodotto> findByModelloAndMarchio (String modello,String marchio);
 
     public List<Prodotto> findByConcessionarioId(Long concessionario);
+
 }

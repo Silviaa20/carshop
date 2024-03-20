@@ -1,6 +1,9 @@
 package it.contrader.carshop.controller;
-<<<<<<<<< Temporary merge branch 1
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.contrader.carshop.service.ProdottoService;
 import it.contrader.carshop.dto.ProdottoDTO;
@@ -60,7 +63,6 @@ ProdottoService prodottoService;
 //        return prodottoService.countByMarchioAndModello(marchio, modello, id);
 //    }
 
-}
     @GetMapping("/readModello")
     public ResponseEntity<List<ProdottoDTO>> readModello(@RequestParam String modello){
         List<ProdottoDTO> prodottiDTO = prodottoService.readModello(modello);
@@ -82,5 +84,5 @@ ProdottoService prodottoService;
 //    public String readnome_c (@RequestParam Long id) {
 //        return  service.nomeConcessionario(id);
 //    }
->>>>>>>>> Temporary merge branch 2
+
 

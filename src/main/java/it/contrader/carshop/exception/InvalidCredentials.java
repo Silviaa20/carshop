@@ -1,4 +1,4 @@
-package it.contrader.carshop.exceptions;
+package it.contrader.carshop.exception;
 
 public class InvalidCredentials extends RuntimeException{
     public InvalidCredentials(String message) {

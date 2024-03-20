@@ -1,13 +1,11 @@
 package it.contrader.carshop.converter;
+import it.contrader.carshop.exception.SomethingNotFoundException;
 import it.contrader.carshop.model.Concessionario;
 import it.contrader.carshop.model.Prodotto;
 import it.contrader.carshop.dto.ProdottoDTO;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -25,11 +23,12 @@ public class ProdottoConverter {
            prodottoDTO = new ProdottoDTO(
                    prodotto.getId(),
                    prodotto.getMarchio(),
-                   prodotto.getModello(),
+                   (prodotto.getModello() == null ? new SomethingNotFoundException("modello mancante").getMessage() : prodotto.getModello()),
                    prodotto.getPrezzo(),
                    prodotto.getQuantita(),
                    prodotto.getConcessionario().getId());
        }
+
         return prodottoDTO;
     }
     public Prodotto toEntity(ProdottoDTO prodottoDTO) {
@@ -76,13 +75,9 @@ public class ProdottoConverter {
         //mappiamo ogni elemento (c) di concessionarioPage e lo trasformiamo in tipo dto
     }
 
-    public Page<ProdottoDTO> convertToDTOPage(Page<Prodotto> page) {
-        return page.map(entity -> modelMapper.map(entity, getDTOClass()));
-    }
+//    public Page<ProdottoDTO> convertToDTOPage(Page<Prodotto> page) {
+//        return page.map(entity -> modelMapper.map(entity, getDTOClass()));
+//    }
 
-
-
-=========
->>>>>>>>> Temporary merge branch 2
 }
 
