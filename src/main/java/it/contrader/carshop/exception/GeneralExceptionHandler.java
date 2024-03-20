@@ -1,4 +1,4 @@
-package it.contrader.carshop.exceptions;
+package it.contrader.carshop.exception;
 
 import org.apache.hc.client5.http.auth.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;

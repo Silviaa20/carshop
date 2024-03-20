@@ -3,7 +3,7 @@ package it.contrader.carshop.service;
 import it.contrader.carshop.converter.AnagraficaConverter;
 import it.contrader.carshop.dao.AnagraficaRepository;
 import it.contrader.carshop.dto.AnagraficaDTO;
-import it.contrader.carshop.exceptions.InvalidCredentials;
+import it.contrader.carshop.exception.InvalidCredentials;
 import it.contrader.carshop.model.Anagrafica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
