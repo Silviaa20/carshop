@@ -47,8 +47,6 @@ public class ConcessionarioController {
         return service.getAllPaginata(PageRequest.of(pageNumber,pageSize));
     }
 
-    //i parametri di tipo pageable vengono qui spacchettati e poi riuniti con "PageRequest.of"
-
 
     @GetMapping("/sommaProdotti")
     public Long sommaProdotti (@RequestParam Long id){

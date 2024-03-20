@@ -34,10 +34,10 @@ public class UtenteController {
         return new ResponseEntity<>(utenteService.getAllPaginata(PageRequest.of(pageNumber, pageSize)), HttpStatus.OK);
     }
 
-//    @GetMapping("/reademail")
-//    public UtenteDTO reademail(String email) {
-//        return utenteService.reademail(email);
-//    }
+    @GetMapping("/reademail")
+    public UtenteDTO reademail(String email) {
+        return utenteService.reademail(email);
+    }
 
     @DeleteMapping("/delete")
     public void  delete (@RequestParam Long id){

@@ -4,6 +4,7 @@ import it.contrader.carshop.converter.UtenteConverter;
 import it.contrader.carshop.dao.UtenteRepository;
 import it.contrader.carshop.dto.UtenteDTO;
 import it.contrader.carshop.exceptions.InvalidCredentials;
+import it.contrader.carshop.exceptions.UserNotFoundException;
 import it.contrader.carshop.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,7 +45,7 @@ public class UtenteService {
     }
 
     public UtenteDTO read(Long id) {
-        return converter.toDTO(repository.findById(id).orElse(null));
+        return converter.toDTO(repository.findById(id).orElseThrow(() -> new UserNotFoundException("utente non trovato")));
     }
 
 
