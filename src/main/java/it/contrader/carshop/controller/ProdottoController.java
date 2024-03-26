@@ -80,5 +80,10 @@ public class ProdottoController {
     public List<ProdottoDTO> findByPrezzoBetween(@RequestParam Double minPrezzo, @RequestParam Double maxPrezzo) {
         return prodottoService.findByPrezzoBetween(minPrezzo, maxPrezzo);
     }
+
+    @GetMapping("/findByQuantita")
+    public List<ProdottoDTO> findByQuantita(@RequestParam Long quantita) {
+        return prodottoService.findByQuantita(quantita);
+    }
 }
 

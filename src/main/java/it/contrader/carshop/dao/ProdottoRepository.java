@@ -15,6 +15,8 @@ public interface ProdottoRepository extends JpaRepository<Prodotto,Long> {
 
     List <Prodotto> findByMarchio (String marchio);
 
+    List <Prodotto> findByQuantita (Long quantita);
+
     List <Prodotto> findByModelloAndMarchio (String modello,String marchio);
 
     List<Prodotto> findByConcessionarioId(Long concessionario);

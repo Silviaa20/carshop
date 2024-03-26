@@ -74,5 +74,8 @@ public class ProdottoService {
         return prodottoConverter.toDTOList(prodottoRepository.findByPrezzoBetween(minPrezzo,maxPrezzo));
     }
 
+    public List <ProdottoDTO> findByQuantita (Long quantita){
+        return prodottoConverter.toDTOList(prodottoRepository.findByQuantita(quantita));
+    }
 
 }
